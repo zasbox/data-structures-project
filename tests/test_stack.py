@@ -1,28 +1,24 @@
-import pytest
+import unittest
 
 from src.stack import Stack
 
 
-@pytest.fixture
-def stack():
-    stack = Stack()
-    stack.push('data1')
-    stack.push('data2')
-    stack.push('data3')
-    return stack
+class TestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.stack = Stack()
+        self.stack.push('data1')
+        self.stack.push('data2')
+        self.stack.push('data3')
 
+    def test_push(self):
+        self.assertEqual(self.stack.top.data, 'data3')
+        self.assertEqual(self.stack.top.next_node.data, 'data2')
+        self.assertEqual(self.stack.top.next_node.next_node.data, 'data1')
+        self.assertIsNone(self.stack.top.next_node.next_node.next_node)
+        with self.assertRaises(AttributeError):
+            data = self.stack.top.next_node.next_node.next_node.data
 
-def test_push(stack):
-    assert stack.top.data == "data3"
-    assert stack.top.next_node.data == "data2"
-    assert stack.top.next_node.next_node.data == "data1"
-    assert stack.top.next_node.next_node.next_node is None
-    with pytest.raises(AttributeError):
-        data = stack.top.next_node.next_node.next_node.data
-
-
-def test_pop(stack):
-    data = stack.pop()
-    assert data == "data3"
-    assert stack.top.data == "data2"
-
+    def test_pop(self):
+        data = self.stack.pop()
+        self.assertEqual(data,  "data3")
+        self.assertEqual(self.stack.top.data, "data2")
