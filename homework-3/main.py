@@ -20,3 +20,4 @@ if __name__ == '__main__':
 
     # Проверяем магический метод __str__
     assert str(queue) == "data1\ndata2\ndata3"
+

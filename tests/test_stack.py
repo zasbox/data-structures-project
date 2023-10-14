@@ -22,3 +22,6 @@ class TestCase(unittest.TestCase):
         data = self.stack.pop()
         self.assertEqual(data,  "data3")
         self.assertEqual(self.stack.top.data, "data2")
+
+    def test_str(self):
+        self.assertEqual(str(self.stack), "data3\ndata2\ndata1")
