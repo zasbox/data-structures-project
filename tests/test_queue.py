@@ -23,6 +23,9 @@ class TestQueue(TestCase):
         self.assertEqual(data, 'data1')
         self.assertEqual(self.queue.head.data, 'data2')
 
+        queue = Queue()
+        self.assertIsNone(queue.dequeue())
+
     def test_str(self):
         self.assertEqual(str(self.queue), "data1\ndata2\ndata3")
 
